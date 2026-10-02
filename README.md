@@ -1,16 +1,16 @@
-# CyberShield – AI-Assisted Phishing & Cyber Threat Analyzer
+# 🛡️ CyberShield – AI-Assisted Phishing & Cyber Threat Analyzer
 
-CyberShield is a cybersecurity tool that analyzes suspicious emails, messages, and security notifications for common phishing and social engineering indicators.
+CyberShield is an AI-assisted cybersecurity tool designed to analyze suspicious emails, messages, and security notifications.
 
-The tool combines **rule-based threat detection** with **Google Gemini AI analysis** to identify possible phishing, credential theft, suspicious links, and social engineering attempts.
+The tool combines rule-based threat detection with Google Gemini AI to identify possible phishing, social engineering, credential theft, and suspicious link indicators.
 
 ---
 
-## 🎯 Objective
+## 📌 Project Overview
 
-The main objective of CyberShield is to provide a simple security analysis tool that can help users identify suspicious messages before interacting with them.
+CyberShield allows a user to paste a suspicious message and analyze it for common cybersecurity threat indicators.
 
-The tool analyzes a message and provides:
+The application provides:
 
 - Threat status
 - Risk level
@@ -20,24 +20,58 @@ The tool analyzes a message and provides:
 - AI-based analysis
 - Security recommendation
 
+The project is designed as a learning-oriented cybersecurity tool and is inspired by documented phishing and social-engineering attack patterns.
+
 ---
 
-## 🔍 Key Features
+## 🎯 Objectives
 
-### 1. Rule-Based Threat Detection
+The main objectives of CyberShield are:
+
+1. Detect common phishing indicators.
+2. Identify social-engineering patterns.
+3. Detect credential-related requests.
+4. Identify suspicious URLs and domains.
+5. Use AI to provide additional threat analysis.
+6. Provide simple security recommendations to users.
+7. Demonstrate practical cybersecurity concepts through a working tool.
+
+---
+
+## 🧰 Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Python | Backend programming |
+| Flask | Web application framework |
+| Google Gemini AI | AI-based threat analysis |
+| HTML | Frontend structure |
+| CSS | User interface design |
+| JavaScript | Frontend interaction |
+| Fernet | Message encryption |
+| Python-dotenv | Environment variable management |
+| Git & GitHub | Version control and project hosting |
+
+---
+
+## 🔐 Security Features
+
+### 1. Rule-Based Detection
 
 CyberShield checks messages for indicators such as:
 
 - Urgency and pressure
-- Login or verification requests
-- Password and credential requests
-- Suspicious URLs
-- Suspicious domain patterns
-- Social engineering terminology
+- Login requests
+- Account verification
+- Password requests
+- OTP requests
+- Suspicious links
+- Suspicious domains
+- Social-engineering terminology
 
 ### 2. AI-Assisted Analysis
 
-Google Gemini AI is used to analyze suspicious messages for:
+Google Gemini AI analyzes the message for:
 
 - Phishing
 - Social engineering
@@ -45,186 +79,187 @@ Google Gemini AI is used to analyze suspicious messages for:
 - Malicious links
 - Account takeover attempts
 
-### 3. Risk Classification
+### 3. Message Encryption
 
-The tool classifies detected threats into:
+The submitted message is processed using Fernet encryption before analysis.
+
+### 4. Risk Classification
+
+The tool classifies messages into:
 
 - LOW
 - MEDIUM
 - HIGH
 
-### 4. Message Encryption
+---
 
-The submitted message is encrypted using **Fernet symmetric encryption** before analysis and decrypted for processing.
+# 🖥️ Screenshots
 
-### 5. Security Recommendations
+## 🏠 Home Page
 
-After analysis, CyberShield provides a recommendation to help the user respond safely.
+### Home Page – Empty Analyzer
+
+![CyberShield Home Page](screenshots/home-1.png)
+
+### Home Page – Suspicious Message Entered
+
+![CyberShield Message Analysis](screenshots/home-2.png)
 
 ---
 
-## 🛠️ Technologies Used
+## 🚨 Threat Detection
 
-| Technology | Purpose |
-|---|---|
-| Python | Backend programming |
-| Flask | Web application framework |
-| Flask-Bcrypt | Password/security support |
-| Cryptography / Fernet | Message encryption |
-| Google Gemini API | AI-based threat analysis |
-| HTML | Frontend |
-| CSS | User interface |
-| JavaScript | Frontend interaction |
+### Threat Detection Result
+
+![CyberShield Threat Detection](screenshots/threat-1.png)
+
+### Detected Indicators and Risk Score
+
+![CyberShield Risk Analysis](screenshots/threat-2.png)
+
+### AI Threat Analysis
+
+![CyberShield AI Analysis](screenshots/threat-3.png)
 
 ---
 
-## 🏗️ System Workflow
+## 📚 Case Study Reference
+
+### Case Study Section
+
+![CyberShield Case Study](screenshots/case-study-1.png)
+
+### Documented Attack Context
+
+![CyberShield Case Study Reference](screenshots/case-study-2.png)
+
+### Phishing and AiTM Reference
+
+![CyberShield Attack Reference](screenshots/case-study-3.png)
+
+---
+
+# 🔬 Case Study
+
+## Microsoft-Observed Code of Conduct Phishing Campaign
+
+CyberShield was developed with reference to a documented phishing campaign involving fake Code of Conduct and compliance-related messages.
+
+The documented campaign was observed during:
+
+**14–16 April 2026**
+
+The campaign involved phishing and Adversary-in-the-Middle (AiTM) techniques and targeted more than 35,000 users.
+
+CyberShield does not reproduce the real attack. Instead, the case study is used to understand and detect similar phishing and social-engineering indicators.
+
+---
+
+# ⚙️ How CyberShield Works
 
 ```text
-User
-  |
-  v
-Enter Suspicious Message
-  |
-  v
-CyberShield Web Interface
-  |
-  v
-Message Encryption
-  |
-  v
-Rule-Based Threat Detection
-  |
-  +--------------------+
-  |                    |
-  v                    v
-Threat Indicators   Gemini AI
-  |                    |
-  +---------+----------+
-            |
-            v
-      Final Analysis
-            |
-            v
-   Risk + Threat Type
-            |
-            v
+User enters suspicious message
+            ↓
+      Message Encryption
+            ↓
+     Rule-Based Detection
+            ↓
+        Gemini AI
+            ↓
+   Threat Result Generation
+            ↓
+ Status + Risk + Indicators
+            ↓
  Security Recommendation
 
-Example Detection
-
-Example suspicious message:
-
-Urgent! Your account will be suspended. Please click here to verify your password and login immediately.
-
-CyberShield can detect indicators such as:
-
-Urgency or pressure
-Login/verification request
-Credential-related request
-
-Example result:
-
-Status: THREAT
-Risk: HIGH
-Threat Type: Phishing, Credential Theft
-📚 Real-World Case Study
-Code of Conduct Phishing Campaign
-
-CyberShield's detection logic includes indicators relevant to a documented phishing campaign reported by Microsoft.
-
-The campaign involved messages using a Code of Conduct / compliance theme and techniques associated with phishing and Adversary-in-the-Middle (AiTM).
-
-Observed: 14–16 April 2026
-
-Reported by Microsoft: 4 May 2026
-
-Reported target scale: 35,000+ users
-
-Technique: Phishing + AiTM
-
-CyberShield is a case-study-inspired detection tool. It does not reproduce or perform the actual Microsoft attack.
-
-🚀 How to Run
+🚀 How to Run the Project
 1. Clone the repository
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/parmar-pooja-tech/CyberShield-Threat-Analyzer.git
 2. Open the project
 cd CyberShield-Threat-Analyzer
-3. Create a virtual environment
+3. Create virtual environment
 python -m venv venv
-4. Activate the virtual environment
+4. Activate virtual environment
 Windows PowerShell
 venv\Scripts\activate
 5. Install dependencies
 pip install -r requirements.txt
-6. Create .env
+6. Configure Gemini API
 
-Create a file named:
-
-.env
+Create a .env file in the project folder.
 
 Add:
 
-GEMINI_API_KEY=your_actual_gemini_api_key
+GEMINI_API_KEY=your_api_key_here
 
-Never upload the actual .env file to GitHub.
+Do not upload the .env file to GitHub.
 
 7. Run the application
 python app.py
 
-Open:
+Then open:
 
 http://127.0.0.1:5000
-🔐 Security
 
-The following files contain sensitive information and should not be uploaded to GitHub:
-
-.env
-secret.key
-venv/
-
-These files are excluded using .gitignore.
+📂 Project Structure
+CyberShield-Threat-Analyzer/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── .env.example
+│
+├── templates/
+│   ├── index.html
+│   ├── chat.html
+│   ├── login.html
+│   └── register.html
+│
+├── screenshots/
+│   ├── home-1.png
+│   ├── home-2.png
+│   ├── threat-1.png
+│   ├── threat-2.png
+│   ├── threat-3.png
+│   ├── case-study-1.png
+│   ├── case-study-2.png
+│   └── case-study-3.png
+│
+└── secret.key
 
 ⚠️ Limitations
-Rule-based detection depends on predefined indicators.
-AI analysis depends on Gemini API availability and quota.
-The tool cannot guarantee that every message classified as SAFE is actually safe.
-Advanced phishing techniques may require additional analysis.
-The current version is intended for educational and demonstration purposes.
+AI analysis depends on Gemini API availability.
+Free API usage may have request limits.
+Rule-based detection may not detect every type of phishing attack.
+The tool should be treated as an analysis aid, not as a replacement for professional security systems.
+A message classified as SAFE should still be reviewed carefully when sensitive information is involved.
 🔮 Future Enhancements
 
 Possible future improvements include:
 
-URL reputation checking
-Domain age and WHOIS analysis
 Email header analysis
-Attachment analysis
-VirusTotal integration
-ML-based phishing classification
-Threat intelligence integration
-Browser extension
-Detailed security reports
-Database-based threat history
-🎓 Project Purpose
+URL reputation checking
+Domain age and reputation analysis
+Attachment scanning
+Malware analysis integration
+SIEM integration
+Threat intelligence APIs
+Browser extension support
+Email security integration
+Improved AI-based risk scoring
+👩‍💻 Project
 
-This project was developed as an academic cybersecurity project to demonstrate the practical application of:
+Project: CyberShield – AI-Assisted Phishing & Cyber Threat Analyzer
 
-Cyber threat detection
-Phishing analysis
-Social engineering detection
-Encryption
-Generative AI
-Web application development
-👩‍💻 Author
+Field: Cybersecurity
 
-Pooja Parmar
+Course: B.Sc. Cyber & Digital Science
 
-B.Sc. Cyber & Digital Science
+Academic Year: 2026–27
 
-Cybersecurity | Cloud Security | Generative AI
-
-📄 Disclaimer
-
-CyberShield is an educational cybersecurity analysis tool.
-
-It should not be considered a replacement for professional security tools, security teams, or threat intelligence platforms.
+📚 References
+Microsoft Security – Documented Code of Conduct phishing campaign
+Google Gemini API documentation
+Flask documentation
+Python Cryptography documentation
