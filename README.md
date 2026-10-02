@@ -97,13 +97,9 @@ The tool classifies messages into:
 
 ## 🏠 Home Page
 
-### Home Page – Empty Analyzer
+### Home Page
 
 ![CyberShield Home Page](screenshots/home-1.png)
-
-### Home Page – Suspicious Message Entered
-
-![CyberShield Message Analysis](screenshots/home-2.png)
 
 ---
 
@@ -132,10 +128,6 @@ The tool classifies messages into:
 ### Documented Attack Context
 
 ![CyberShield Case Study Reference](screenshots/case-study-2.png)
-
-### Phishing and AiTM Reference
-
-![CyberShield Attack Reference](screenshots/case-study-3.png)
 
 ---
 
@@ -171,7 +163,6 @@ User enters suspicious message
  Status + Risk + Indicators
             ↓
  Security Recommendation
-
 🚀 How to Run the Project
 1. Clone the repository
 git clone https://github.com/parmar-pooja-tech/CyberShield-Threat-Analyzer.git
@@ -200,7 +191,6 @@ python app.py
 Then open:
 
 http://127.0.0.1:5000
-
 📂 Project Structure
 CyberShield-Threat-Analyzer/
 │
@@ -218,16 +208,13 @@ CyberShield-Threat-Analyzer/
 │
 ├── screenshots/
 │   ├── home-1.png
-│   ├── home-2.png
 │   ├── threat-1.png
 │   ├── threat-2.png
 │   ├── threat-3.png
 │   ├── case-study-1.png
-│   ├── case-study-2.png
-│   └── case-study-3.png
+│   └── case-study-2.png
 │
 └── secret.key
-
 ⚠️ Limitations
 AI analysis depends on Gemini API availability.
 Free API usage may have request limits.
