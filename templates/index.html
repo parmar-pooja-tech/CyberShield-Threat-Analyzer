@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CyberShield Threat Analyzer</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(circle at top left, #123456, transparent 35%),
+                #07111f;
+
+            color: white;
+
+            min-height: 100vh;
+
+            padding: 30px;
+        }
+
+
+        .container {
+
+            max-width: 1000px;
+
+            margin: auto;
+        }
+
+
+        /* HEADER */
+
+        .header {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .shield {
+
+            font-size: 55px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .header h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .header h1 span {
+
+            color: #35c9ff;
+        }
+
+
+        .header p {
+
+            color: #a9b8c8;
+
+            font-size: 16px;
+        }
+
+
+        /* ANALYZER CARD */
+
+        .card {
+
+            background: rgba(15, 30, 48, 0.95);
+
+            border: 1px solid #23425f;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.35);
+
+            margin-bottom: 25px;
+        }
+
+
+        .card h2 {
+
+            margin-bottom: 12px;
+
+            font-size: 22px;
+        }
+
+
+        .description {
+
+            color: #a9b8c8;
+
+            margin-bottom: 20px;
+
+            line-height: 1.5;
+        }
+
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 180px;
+
+            resize: vertical;
+
+            background: #081625;
+
+            color: white;
+
+            border: 1px solid #31516d;
+
+            border-radius: 12px;
+
+            padding: 16px;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+
+        textarea:focus {
+
+            border-color: #35c9ff;
+        }
+
+
+        textarea::placeholder {
+
+            color: #71869a;
+        }
+
+
+        .button-container {
+
+            text-align: center;
+
+            margin-top: 20px;
+        }
+
+
+        button {
+
+            background: #168ac4;
+
+            color: white;
+
+            border: none;
+
+            padding: 14px 30px;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        button:hover {
+
+            background: #0f74a7;
+        }
+
+
+        button:disabled {
+
+            opacity: 0.6;
+
+            cursor: not-allowed;
+        }
+
+
+        /* RESULT */
+
+        #result {
+
+            display: none;
+        }
+
+
+        .result-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 20px;
+        }
+
+
+        .status {
+
+            font-size: 24px;
+
+            font-weight: bold;
+        }
+
+
+        .threat {
+
+            color: #ff6b6b;
+        }
+
+
+        .safe {
+
+            color: #55d68a;
+        }
+
+
+        .risk {
+
+            padding: 8px 15px;
+
+            border-radius: 20px;
+
+            font-weight: bold;
+
+            background: #263b50;
+        }
+
+
+        .result-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .result-box {
+
+            background: #0a1929;
+
+            border: 1px solid #203b55;
+
+            border-radius: 12px;
+
+            padding: 18px;
+        }
+
+
+        .result-box h3 {
+
+            color: #35c9ff;
+
+            margin-bottom: 12px;
+
+            font-size: 16px;
+        }
+
+
+        .result-box p {
+
+            color: #d4dee8;
+
+            line-height: 1.5;
+        }
+
+
+        ul {
+
+            padding-left: 20px;
+
+            color: #d4dee8;
+        }
+
+
+        li {
+
+            margin-bottom: 8px;
+        }
+
+
+        .recommendation {
+
+            margin-top: 18px;
+
+            background: #10283d;
+
+            border-left: 4px solid #35c9ff;
+
+            padding: 16px;
+
+            border-radius: 8px;
+
+            line-height: 1.5;
+        }
+
+
+        /* CASE STUDY */
+
+        .case-study {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+
+        .case-item {
+
+            background: #0a1929;
+
+            border: 1px solid #203b55;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            text-align: center;
+        }
+
+
+        .case-item strong {
+
+            display: block;
+
+            color: #35c9ff;
+
+            margin-bottom: 7px;
+        }
+
+
+        .case-item span {
+
+            color: #c4d1dc;
+
+            font-size: 14px;
+        }
+
+
+        /* FOOTER */
+
+        footer {
+
+            text-align: center;
+
+            color: #71869a;
+
+            margin-top: 30px;
+
+            font-size: 13px;
+        }
+
+
+        /* LOADING */
+
+        #loading {
+
+            display: none;
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #35c9ff;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+
+            body {
+
+                padding: 15px;
+            }
+
+
+            .header h1 {
+
+                font-size: 28px;
+            }
+
+
+            .result-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .case-study {
+
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="shield">
+            🛡️
+        </div>
+
+        <h1>
+            Cyber<span>Shield</span>
+        </h1>
+
+        <p>
+            AI-Assisted Phishing & Cyber Threat Analyzer
+        </p>
+
+    </div>
+
+
+
+    <!-- ANALYZER -->
+
+    <div class="card">
+
+        <h2>
+            🔍 Analyze Suspicious Message
+        </h2>
+
+        <p class="description">
+
+            Paste a suspicious email, message, or security
+            notification below. CyberShield will analyze it
+            for phishing, social engineering, credential
+            theft, suspicious links, and other threat indicators.
+
+        </p>
+
+
+        <textarea
+            id="message"
+            placeholder="Example: Urgent! Your account will be suspended. Please click the link below and verify your password..."
+        ></textarea>
+
+
+        <div class="button-container">
+
+            <button
+                id="analyzeButton"
+                onclick="analyzeMessage()"
+            >
+
+                🔎 ANALYZE THREAT
+
+            </button>
+
+        </div>
+
+
+        <div id="loading">
+
+            ⏳ Analyzing message...
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RESULT -->
+
+    <div
+        class="card"
+        id="result"
+    >
+
+        <div class="result-header">
+
+            <div
+                class="status"
+                id="status"
+            >
+            </div>
+
+
+            <div
+                class="risk"
+                id="risk"
+            >
+            </div>
+
+        </div>
+
+
+        <div class="result-grid">
+
+
+            <!-- SCORE -->
+
+            <div class="result-box">
+
+                <h3>
+                    🎯 Risk Score
+                </h3>
+
+                <p id="score">
+                </p>
+
+            </div>
+
+
+            <!-- THREAT TYPE -->
+
+            <div class="result-box">
+
+                <h3>
+                    🧩 Threat Type
+                </h3>
+
+                <p id="threatTypes">
+                </p>
+
+            </div>
+
+
+            <!-- INDICATORS -->
+
+            <div class="result-box">
+
+                <h3>
+                    🚨 Detected Indicators
+                </h3>
+
+                <ul id="indicators">
+                </ul>
+
+            </div>
+
+
+            <!-- AI -->
+
+            <div class="result-box">
+
+                <h3>
+                    🤖 AI Analysis
+                </h3>
+
+                <p id="aiAnalysis">
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="recommendation">
+
+            <strong>
+                🛡️ Recommendation
+            </strong>
+
+            <p id="recommendation">
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CASE STUDY -->
+
+    <div class="card">
+
+        <h2>
+            📚 Case Study Reference
+        </h2>
+
+        <p class="description">
+
+            CyberShield is designed to identify indicators
+            relevant to documented phishing and social
+            engineering attacks.
+
+        </p>
+
+
+        <div class="case-study">
+
+
+            <div class="case-item">
+
+                <strong>
+                    Incident
+                </strong>
+
+                <span>
+                    Code of Conduct Phishing Campaign
+                </span>
+
+            </div>
+
+
+            <div class="case-item">
+
+                <strong>
+                    Observed
+                </strong>
+
+                <span>
+                    14–16 April 2026
+                </span>
+
+            </div>
+
+
+            <div class="case-item">
+
+                <strong>
+                    Target
+                </strong>
+
+                <span>
+                    35,000+ users
+                </span>
+
+            </div>
+
+
+            <div class="case-item">
+
+                <strong>
+                    Technique
+                </strong>
+
+                <span>
+                    Phishing + AiTM
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        CyberShield – AI-Assisted Cyber Threat Analysis Tool
+        <br>
+        B.Sc. Cyber & Digital Science | 2026–27
+
+    </footer>
+
+
+</div>
+
+
+
+<script>
+
+
+async function analyzeMessage() {
+
+
+    const messageInput =
+        document.getElementById("message");
+
+
+    const button =
+        document.getElementById("analyzeButton");
+
+
+    const loading =
+        document.getElementById("loading");
+
+
+    const result =
+        document.getElementById("result");
+
+
+    const message =
+        messageInput.value.trim();
+
+
+    if (message === "") {
+
+        alert(
+            "Please enter a message to analyze."
+        );
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    loading.style.display = "block";
+
+    result.style.display = "none";
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                "/analyze",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        message: message
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            alert(
+                data.error ||
+                "Something went wrong."
+            );
+
+            return;
+        }
+
+
+        /* STATUS */
+
+        const status =
+            document.getElementById("status");
+
+
+        status.innerText =
+            data.status === "THREAT"
+                ? "⚠️ THREAT DETECTED"
+                : "✅ MESSAGE APPEARS SAFE";
+
+
+        status.className =
+            "status " +
+            (
+                data.status === "THREAT"
+                    ? "threat"
+                    : "safe"
+            );
+
+
+        /* RISK */
+
+        document.getElementById("risk")
+            .innerText =
+            "Risk Level: " + data.risk;
+
+
+        /* SCORE */
+
+        document.getElementById("score")
+            .innerText =
+            data.score +
+            " detection points";
+
+
+        /* THREAT TYPES */
+
+        document.getElementById("threatTypes")
+            .innerText =
+            data.threat_types.join(", ");
+
+
+        /* INDICATORS */
+
+        const indicatorList =
+            document.getElementById(
+                "indicators"
+            );
+
+
+        indicatorList.innerHTML = "";
+
+
+        if (
+            data.indicators.length === 0
+        ) {
+
+            const li =
+                document.createElement("li");
+
+            li.innerText =
+                "No strong indicators detected.";
+
+            indicatorList.appendChild(li);
+
+        } else {
+
+
+            data.indicators.forEach(
+                function(indicator) {
+
+                    const li =
+                        document.createElement(
+                            "li"
+                        );
+
+                    li.innerText =
+                        indicator;
+
+                    indicatorList.appendChild(li);
+
+                }
+            );
+
+        }
+
+
+        /* AI ANALYSIS */
+
+        document.getElementById(
+            "aiAnalysis"
+        ).innerText =
+            data.ai_analysis;
+
+
+        /* RECOMMENDATION */
+
+        document.getElementById(
+            "recommendation"
+        ).innerText =
+            data.recommendation;
+
+
+        /* SHOW RESULT */
+
+        result.style.display = "block";
+
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to connect to the server."
+        );
+
+    }
+
+
+    finally {
+
+        button.disabled = false;
+
+        loading.style.display = "none";
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
